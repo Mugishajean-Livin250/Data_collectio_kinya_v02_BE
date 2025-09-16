@@ -6,7 +6,7 @@ passlib[bcrypt]==1.7.4
 pydantic==2.7.1
 python-multipart==0.0.9
 librosa==0.10.2
-numpy==1.25.2
+numpy>=1.25.2
 soundfile==0.12.1
 pydub==0.25.1
 pyloudnorm==0.1.1

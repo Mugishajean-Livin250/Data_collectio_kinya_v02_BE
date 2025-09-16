@@ -10,6 +10,6 @@ numpy==1.26.4
 soundfile==0.12.1
 pydub==0.25.1
 pyloudnorm==0.1.1
-openai-whisper==20231117
+openai-whisper==20230805
 deep-translator==1.11.4
 aiofiles==23.2.1

@@ -1,5 +1,5 @@
 # Use Python 3.11 (compatible with numpy, pydantic, etc.)
-FROM python:3.11.17-slim
+FROM python:3.11-slim
 
 # Set working directory inside container
 WORKDIR /app

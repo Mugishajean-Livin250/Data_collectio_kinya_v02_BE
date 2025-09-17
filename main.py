@@ -23,8 +23,8 @@ from datetime import datetime, timedelta
 from deep_translator import GoogleTranslator
 
 # Database imports
-from database import SessionLocal, engine, Base
-from models import User, Audio, AudioStatus
+from database import engine, SessionLocal
+from models import User, Audio, AudioStatus, Base
 
 # Setup
 Base.metadata.create_all(bind=engine)
@@ -34,7 +34,7 @@ app.mount("/static", StaticFiles(directory="uploads"), name="static")
 from fastapi.middleware.cors import CORSMiddleware
 
 origins = [
-    "http://localhost:5174",  # React dev server
+    "http://localhost:5173",  # React dev server
 ]
 
 app.add_middleware(

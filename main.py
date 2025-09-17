@@ -77,10 +77,13 @@ def authenticate_user(db, username, password):
     if user and verify_password(password, user.password_hash):
         return user
 
-def create_access_token(data, expires_delta=None):
+def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()
-    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
-    to_encode.update({"exp": expire})
+    
+    if expires_delta is not None:  # only set exp if expiry is given
+        expire = datetime.utcnow() + expires_delta
+        to_encode.update({"exp": expire})
+    
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
@@ -311,7 +314,7 @@ def login(form: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get
     user = authenticate_user(db, form.username, form.password)
     if not user:
         raise HTTPException(status_code=400, detail="Invalid username or password")
-    token = create_access_token({"sub": user.username})
+    token = create_access_token({"sub": user.username}, expires_delta=None)
     return {f"access_token": token,
              "token_type": "bearer", 
              "user":{user.username}, 

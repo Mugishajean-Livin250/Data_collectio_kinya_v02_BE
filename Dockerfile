@@ -4,10 +4,11 @@ FROM python:3.11-slim
 # Set working directory inside container
 WORKDIR /app
 
-# Install system dependencies (for numpy, psycopg2, etc.)
+# Install system dependencies (for numpy, psycopg2, audio processing, etc.)
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy project files into container

@@ -11,3 +11,4 @@ pydub==0.25.1
 pyloudnorm==0.1.1
 librosa==0.11.0
 openai-whisper==20231117
+deep_translator

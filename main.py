@@ -444,7 +444,6 @@ def download_audio(audio_id: int, current_user: User = Depends(get_current_user)
         raise HTTPException(status_code=404, detail="Audio not found")
     authorized = (current_user.role == "admin" or
                   (current_user.role == "transcriber" and audio.assigned_transcriber_id == current_user.id) or
-                  (current_user.role == "datacollector" and audio.assigned_collector_id == current_user.id) or
                   (current_user.role == "validator" and audio.assigned_validator_id == current_user.id))
     if not authorized:
         raise HTTPException(status_code=403, detail="Not authorized")
